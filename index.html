@@ -10,7 +10,7 @@
 
   <script>
     async function main() {
-      await liff.init({ liffId: "ใส่_LIFF_ID_ตรงนี้" });
+      await liff.init({ liffId: "2008843553-cMQimkAe" });
 
       if (!liff.isLoggedIn()) {
         liff.login();
@@ -19,7 +19,7 @@
 
       const profile = await liff.getProfile();
 
-      await fetch("ใส่_N8N_WEBHOOK_URL_ตรงนี้", {
+      await fetch("https://autothongrod.app.n8n.cloud/webhook/68dbb304-55a1-4efc-b799-59cc5872ebf7", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
