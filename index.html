@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ลงทะเบียนผู้ป่วย</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+</head>
+<body>
+  <h3>กำลังลงทะเบียน กรุณารอสักครู่...</h3>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "ใส่_LIFF_ID_ตรงนี้" });
+
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+
+      const profile = await liff.getProfile();
+
+      await fetch("ใส่_N8N_WEBHOOK_URL_ตรงนี้", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          line_user_id: profile.userId,
+          display_name: profile.displayName
+        })
+      });
+
+      document.body.innerHTML =
+        "<h3>✅ ลงทะเบียนสำเร็จแล้ว</h3><p>เจ้าหน้าที่จะจัดตารางยาให้คุณ</p>";
+    }
+
+    main();
+  </script>
+</body>
+</html>
